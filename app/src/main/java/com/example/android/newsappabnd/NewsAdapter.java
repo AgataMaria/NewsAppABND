@@ -17,9 +17,8 @@ public class NewsAdapter extends ArrayAdapter {
         super(context, 0, articles);
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.news_list_item, parent, false);
@@ -35,5 +34,6 @@ public class NewsAdapter extends ArrayAdapter {
         TextView dateView = (TextView) convertView.findViewById(R.id.date_view);
         dateView.setText(currentArticle.getWebPublDate());
 
-    return convertView;}
+    return convertView;
+    }
 }
