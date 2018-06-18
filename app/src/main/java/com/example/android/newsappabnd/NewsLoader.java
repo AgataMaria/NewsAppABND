@@ -5,7 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
-public class NewsLoader extends AsyncTaskLoader<List<News>>{
+public class NewsLoader extends AsyncTaskLoader<List<News>> {
     private String mUrl;
 
     public NewsLoader(Context context, String mUrl) {
@@ -14,7 +14,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>>{
     }
 
     @Override
-    public List<News> loadInBackground(){
+    public List<News> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
@@ -27,8 +27,4 @@ public class NewsLoader extends AsyncTaskLoader<List<News>>{
     protected void onStartLoading() {
         forceLoad();
     }
-
-
-
-
 }

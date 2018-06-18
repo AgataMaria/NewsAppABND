@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/space_small"
-    android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
     android:paddingBottom="@dimen/space_large"
     android:paddingLeft="@dimen/space_medium"
@@ -14,14 +13,14 @@
         android:id="@+id/section_view"
         style="@style/SectionTextView" />
 
-    <LinearLayout
-        style="@style/ArticleContainer">
-    <TextView
-        android:id="@+id/date_view"
-        style="@style/DateTextView" />
+    <LinearLayout style="@style/ArticleContainer">
 
-    <TextView
-        android:id="@+id/title_view"
-        style="@style/TitleTextView" />
+        <TextView
+            android:id="@+id/date_view"
+            style="@style/DateTextView" />
+
+        <TextView
+            android:id="@+id/title_view"
+            style="@style/TitleTextView" />
     </LinearLayout>
 </LinearLayout>

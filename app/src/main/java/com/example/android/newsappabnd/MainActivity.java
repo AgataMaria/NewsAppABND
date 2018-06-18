@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // and defines the layout file to use
 
         ListView newsListView = (ListView) findViewById(R.id.news_list);
-
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_text_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
         // create and set an adapter on the ListView to handle populating it with clickable News items

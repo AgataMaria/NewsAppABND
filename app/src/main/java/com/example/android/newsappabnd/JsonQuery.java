@@ -1,7 +1,6 @@
 package com.example.android.newsappabnd;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -111,6 +110,7 @@ public final class JsonQuery {
         }
         return jsonRequestResult;
     }
+
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
@@ -124,6 +124,4 @@ public final class JsonQuery {
         }
         return output.toString();
     }
-
-
 }
