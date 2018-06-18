@@ -44,22 +44,16 @@ public final class JsonQuery {
             JSONObject rootJsonResponse = new JSONObject(jsonRequestResult);
             JSONObject responseJSONObject = rootJsonResponse.getJSONObject("response");
             JSONArray resultsJSONArray = responseJSONObject.getJSONArray("results");
-
             for (int i = 0; i < resultsJSONArray.length(); i++) {
-
                 JSONObject currentArticle = resultsJSONArray.getJSONObject(i);
-
                 String webPublDate = currentArticle.getString("webPublicationDate");
-
                 String title = currentArticle.getString("webTitle");
-
                 String section = currentArticle.getString("sectionName");
-
                 String articleUrl = currentArticle.getString("webUrl");
-                //TODO: dodaj autora
-                //String author = currentArticle.getString("tutaj pobaw sie w rozbijanie webTitle");
+                JSONObject fields = currentArticle.getJSONObject("fields");
+                String author = fields.getString("byline");
 
-                News article = new News(webPublDate, title, section, articleUrl);
+                News article = new News(webPublDate, title, section, articleUrl, author);
 
                 articles.add(article);
             }

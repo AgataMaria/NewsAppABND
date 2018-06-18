@@ -14,6 +14,8 @@
         android:id="@+id/section_view"
         style="@style/SectionTextView" />
 
+    <LinearLayout
+        style="@style/ArticleContainer">
     <TextView
         android:id="@+id/date_view"
         style="@style/DateTextView" />
@@ -21,4 +23,5 @@
     <TextView
         android:id="@+id/title_view"
         style="@style/TitleTextView" />
+    </LinearLayout>
 </LinearLayout>

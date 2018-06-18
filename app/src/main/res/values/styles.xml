@@ -22,11 +22,19 @@
         <item name="android:fontFamily">@font/lobster_regular</item>
     </style>
 
+    <!-- Title, author and date container layout -->
+    <style name="ArticleContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/article_box_layout</item>
+    </style>
+
+
     <!-- List item Date Text View -->
     <style name="DateTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@android:color/white</item>
         <item name="android:fontFamily">sans-serif-thin</item>
         <item name="android:gravity">right</item>
         <item name="android:paddingRight">@dimen/space_small</item>
@@ -39,7 +47,6 @@
     <style name="TitleTextView">
     <item name="android:layout_width">match_parent</item>"
     <item name="android:layout_height">wrap_content</item>
-    <item name="android:background">@android:color/white</item>
     <item name="android:fontFamily">sans-serif-light</item>
     <item name="android:paddingBottom">@dimen/space_small</item>
     <item name="android:paddingLeft">@dimen/space_small</item>

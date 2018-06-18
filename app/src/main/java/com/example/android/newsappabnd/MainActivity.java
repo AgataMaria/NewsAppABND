@@ -2,12 +2,12 @@ package com.example.android.newsappabnd;
 
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter myNewsAdapter;
     private TextView mEmptyStateTextView;
-    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?from-date=2018-05-01&q=culture%2Ffilm%2Fmusic%2Ftv-and-radio%2Fbooks%2Fstage&api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
+    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?from-date=2018-05-01&q=culture%2Ffilm%2Fmusic%2Ftv-and-radio%2Fbooks%2Fstage&show-fields=byline&api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
     private static final int NEWS_LOADER_ID = 0;
 
     @Override
@@ -46,13 +46,12 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                News currentArticle = (News) myNewsAdapter.getItem(position);
-                Uri selectedArticleUri = Uri.parse(currentArticle.getUrl());
+                News selectedArticle = (News) myNewsAdapter.getItem(position);
+                Uri selectedArticleUri = Uri.parse(selectedArticle.getUrl());
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, selectedArticleUri);
                 startActivity(websiteIntent);
             }
         });
-
 
         //use the ConnectivityManager class to check the network connection and decide app behaviour
         ConnectivityManager connectivityManager = (ConnectivityManager)
@@ -74,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             progressBarView.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
-
     }
     // override methods required by the Loader
 
