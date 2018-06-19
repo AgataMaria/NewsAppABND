@@ -17,7 +17,6 @@ import java.util.Locale;
 public class NewsAdapter extends ArrayAdapter<News> {
 
     private static final String TITLE_SEPARATOR = "\\|";
-    private static final String DATE_SEPARATOR = "T";
 
     public NewsAdapter(Context context, List<News> articles) {
         super(context, 0, articles);
