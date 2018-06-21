@@ -5,11 +5,16 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,8 +27,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter myNewsAdapter;
     private TextView mEmptyStateTextView;
-    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?from-date=2018-05-01&q=culture%2Ffilm%2Fmusic%2Ftv-and-radio%2Fbooks%2Fstage&show-fields=byline&api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
+    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
     private static final int NEWS_LOADER_ID = 0;
+    private ListPreference mListPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +79,39 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
     }
-    // override methods required by the Loader
+    //Menu methods
+    // inflate menu layout (to use to get to the app settings activity)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
     @Override
-    public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings_choice) {
+            Intent settingsIntent = new Intent(this, AppSettings.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    // override methods required by the news Loader
+    @Override
+    public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String filterByDate = getEntry().toString(R.array.filter_by_date_values);
+        Uri baseUri = Uri.parse(JSON_SOURCE_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        switch (filterByDate){
+            case 1: uriBuilder.appendQueryParameter("from-date", "2018-04-01");
+            break;
+            case 2: uriBuilder.appendQueryParameter("from-date", "2018-05-01");
+            break;
+            case 3: uriBuilder.appendQueryParameter("from-date", "2018-06-01");
+            break;
         return new NewsLoader(this, JSON_SOURCE_URL);
     }
 

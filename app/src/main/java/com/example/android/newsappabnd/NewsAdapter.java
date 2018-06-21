@@ -18,6 +18,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     private static final String TITLE_SEPARATOR = "\\|";
 
+
     public NewsAdapter(Context context, List<News> articles) {
         super(context, 0, articles);
     }

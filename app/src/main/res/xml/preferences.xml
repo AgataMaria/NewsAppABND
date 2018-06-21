@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+    <ListPreference
+        android:title="Articles by date range"
+        android:key="prefList"
+        android:defaultValue="4"
+        android:entries="@array/filter_by_date"
+        android:entryValues="@array/filter_by_date_values" />
+</PreferenceScreen>
