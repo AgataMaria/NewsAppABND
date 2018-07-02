@@ -1,7 +1,6 @@
 package com.example.android.newsappabnd;
 
 public class News {
-    //TODO: dodaj autora
     private String mWebPublDate;
     private String mTitle;
     private String mSection;

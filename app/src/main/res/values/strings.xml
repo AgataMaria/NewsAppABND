@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">News Viewer</string>
-    <string name="settings_menu_item">Viewer Settings</string>
-    <string name="settings_title">News Viewer Settings</string>
+
     <string name="no_internet_connection">Terribly sorry! It seems you lack network connectivity!</string>
     <string name="no_news">No news today! &#8230;or at least not right now.\nPlease come back later! </string>
+
+    <string name="settings_menu_item">Your Viewer Settings</string>
+    <string name="settings_title">News Viewer Settings</string>
+    <string name="settings_section_choice_key">sectionChoice</string>
+    <string name="settings_section_choice_label" translatable="false">Filter news by section</string>
+    <string name="settings_section_choice_default" translatable="false">No selection</string>
+
 </resources>

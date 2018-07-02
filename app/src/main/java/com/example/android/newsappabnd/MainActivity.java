@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter myNewsAdapter;
     private TextView mEmptyStateTextView;
-    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
+    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?from-date=2018-05-01&q=culture%2Ffilm%2Fmusic%2Ftv-and-radio%2Fbooks%2Fstage&show-fields=byline&api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
     private static final int NEWS_LOADER_ID = 0;
     private ListPreference mListPreference;
 
@@ -101,18 +101,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     // override methods required by the news Loader
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String filterByDate = getEntry().toString(R.array.filter_by_date_values);
+SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+String selectedSection = sharedPreferences.getString(getString(R.string.settings_section_choice_key), getString(R.string.settings_section_choice_default));
+
         Uri baseUri = Uri.parse(JSON_SOURCE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        switch (filterByDate){
-            case 1: uriBuilder.appendQueryParameter("from-date", "2018-04-01");
-            break;
-            case 2: uriBuilder.appendQueryParameter("from-date", "2018-05-01");
-            break;
-            case 3: uriBuilder.appendQueryParameter("from-date", "2018-06-01");
-            break;
-        return new NewsLoader(this, JSON_SOURCE_URL);
+        if (!selectedSection.equals(getString(R.string.settings_section_choice_default))) {
+            uriBuilder.appendQueryParameter("section", selectedSection);
+        }
+            return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
