@@ -2,9 +2,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title">
     <EditTextPreference
-        android:defaultValue="@string/settings_section_choice_default"
+        android:defaultValue="@string/settings_searchterm_choice_default"
         android:inputType="text"
-        android:key="@string/settings_section_choice_key"
+        android:key="@string/settings_searchterm_choice_key"
         android:selectAllOnFocus="true"
-        android:title="@string/settings_section_choice_label" />
+        android:title="@string/settings_searchterm_choice_label" />
+
+    <ListPreference
+        android:defaultValue="@string/settings_orderby_choice_default"
+        android:entries="@array/settings_orderby_labels"
+        android:entryValues="@array/settings_orderby_values"
+        android:key="@string/settings_orderby_choice_key"
+        android:title="@string/settings_orderby_choice_label"/>
 </PreferenceScreen>

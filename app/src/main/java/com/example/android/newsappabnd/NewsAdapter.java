@@ -53,7 +53,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView dateView = (TextView) convertView.findViewById(R.id.date_view);
         String dateRaw = currentArticle.getWebPublDate();
         String date = formatDate(dateRaw);
-        dateView.setText(date);
+        dateView.setText("date published: " + date);
 
         return convertView;
     }

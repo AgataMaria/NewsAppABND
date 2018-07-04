@@ -27,9 +27,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter myNewsAdapter;
     private TextView mEmptyStateTextView;
-    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?from-date=2018-05-01&q=culture%2Ffilm%2Fmusic%2Ftv-and-radio%2Fbooks%2Fstage&show-fields=byline&api-key=99080e73-4028-4414-97b6-7f2d47fa5cdd";
+    private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?";
     private static final int NEWS_LOADER_ID = 0;
-    private ListPreference mListPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                News selectedArticle = (News) myNewsAdapter.getItem(position);
+                News selectedArticle = myNewsAdapter.getItem(position);
                 Uri selectedArticleUri = Uri.parse(selectedArticle.getUrl());
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, selectedArticleUri);
                 startActivity(websiteIntent);
@@ -102,13 +101,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-String selectedSection = sharedPreferences.getString(getString(R.string.settings_section_choice_key), getString(R.string.settings_section_choice_default));
+String searchTerm = sharedPreferences.getString(getString(R.string.settings_searchterm_choice_key), getString(R.string.settings_searchterm_choice_default));
+String orderBy = sharedPreferences.getString(getString(R.string.settings_orderby_choice_key), getString(R.string.settings_orderby_choice_default));
 
         Uri baseUri = Uri.parse(JSON_SOURCE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        if (!selectedSection.equals(getString(R.string.settings_section_choice_default))) {
-            uriBuilder.appendQueryParameter("section", selectedSection);
-        }
+        uriBuilder.appendQueryParameter( "api-key", "99080e73-4028-4414-97b6-7f2d47fa5cdd" );
+        uriBuilder.appendQueryParameter( "show-fields", "byline" );
+        uriBuilder.appendQueryParameter("q", searchTerm);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
             return new NewsLoader(this, uriBuilder.toString());
     }
 

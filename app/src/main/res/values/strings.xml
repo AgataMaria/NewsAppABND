@@ -4,10 +4,26 @@
     <string name="no_internet_connection">Terribly sorry! It seems you lack network connectivity!</string>
     <string name="no_news">No news today! &#8230;or at least not right now.\nPlease come back later! </string>
 
+    <!-- Strings for preferences menu -->
     <string name="settings_menu_item">Your Viewer Settings</string>
     <string name="settings_title">News Viewer Settings</string>
-    <string name="settings_section_choice_key">sectionChoice</string>
-    <string name="settings_section_choice_label" translatable="false">Filter news by section</string>
-    <string name="settings_section_choice_default" translatable="false">No selection</string>
+
+    <string name="settings_searchterm_choice_key">searchtermChoice</string>
+    <string name="settings_searchterm_choice_label" translatable="false">Search content&#8230;</string>
+    <string name="settings_searchterm_choice_default" translatable="false">No selection</string>
+
+    <string name="settings_orderby_choice_key">orderbyChoice</string>
+    <string name="settings_orderby_choice_label" translatable="false">Order by&#8230;</string>
+    <string name="settings_orderby_choice_default" translatable="false">Newest</string>
+
+    <string name="settings_orderby_newest_value">newest</string>
+    <string name="settings_orderby_newest_label" translatable="false">Newest</string>
+
+    <string name="settings_orderby_oldest_value">oldest</string>
+    <string name="settings_orderby_oldest_label" translatable="false">Oldest</string>
+
+    <string name="settings_orderby_relevance_value">relevance</string>
+    <string name="settings_orderby_relevance_label" translatable="false">Relevance</string>
+
 
 </resources>

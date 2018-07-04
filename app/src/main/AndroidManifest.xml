@@ -26,6 +26,9 @@
             android:label="@string/settings_title"
             android:screenOrientation="portrait"
             android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
             </activity>
     </application>
 
