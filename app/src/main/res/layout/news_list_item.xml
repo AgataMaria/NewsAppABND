@@ -7,7 +7,8 @@
     android:paddingBottom="@dimen/space_large"
     android:paddingLeft="@dimen/space_medium"
     android:paddingRight="@dimen/space_medium"
-    android:paddingTop="@dimen/space_medium">
+    android:paddingTop="@dimen/space_medium"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/section_view"
