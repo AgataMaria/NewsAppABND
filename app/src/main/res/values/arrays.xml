@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- array for the "Order by" listpreference -->
     <string-array name="settings_orderby_labels">
         <item>@string/settings_orderby_newest_label</item>
         <item>@string/settings_orderby_oldest_label</item>

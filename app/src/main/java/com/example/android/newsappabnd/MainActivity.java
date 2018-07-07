@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private TextView mEmptyStateTextView;
     private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?";
     private static final int NEWS_LOADER_ID = 0;
+   // String apikey = BuildConfig.MY_NEWSAPP_API_KEY
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // or a loading list progress view
         // and defines the layout file to use
 
-        ListView newsListView = (ListView) findViewById(R.id.news_list);
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_text_view);
+        ListView newsListView =  findViewById(R.id.news_list);
+        mEmptyStateTextView =  findViewById(R.id.empty_text_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
         // create and set an adapter on the ListView to handle populating it with clickable News items
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                 Uri selectedArticleUri = Uri.parse(selectedArticle.getUrl());
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, selectedArticleUri);
                 startActivity(websiteIntent);
+                String queryforproblem = selectedArticle.toString();
+                Log.i("OnItemClickListener", queryforproblem);
             }
         });
 
@@ -106,7 +110,7 @@ String orderBy = sharedPreferences.getString(getString(R.string.settings_orderby
 
         Uri baseUri = Uri.parse(JSON_SOURCE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter( "api-key", "99080e73-4028-4414-97b6-7f2d47fa5cdd" );
+        uriBuilder.appendQueryParameter( "api-key", "test" );
         uriBuilder.appendQueryParameter( "show-fields", "byline" );
         uriBuilder.appendQueryParameter("q", searchTerm);
         uriBuilder.appendQueryParameter("order-by", orderBy);

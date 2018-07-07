@@ -14,6 +14,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        //    buildConfigField ‘String’, ‘MY_NEWSAPP_API_KEY’, newsappApiKey
+        //    resValue ‘string’, ‘MY_NEWSAPP_API_KEY’, newsappApiKey
         }
     }
 }
