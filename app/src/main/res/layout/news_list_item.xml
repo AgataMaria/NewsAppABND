@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/space_small"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     android:paddingBottom="@dimen/space_large"
     android:paddingLeft="@dimen/space_medium"
     android:paddingRight="@dimen/space_medium"
-    android:paddingTop="@dimen/space_medium"
-    android:descendantFocusability="blocksDescendants">
+    android:paddingTop="@dimen/space_medium">
 
     <TextView
         android:id="@+id/section_view"

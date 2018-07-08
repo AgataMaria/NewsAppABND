@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private TextView mEmptyStateTextView;
     private static final String JSON_SOURCE_URL = "https://content.guardianapis.com/search?";
     private static final int NEWS_LOADER_ID = 0;
-   // String apikey = BuildConfig.MY_NEWSAPP_API_KEY
+
+    private static final String apikey = BuildConfig.MY_NEWSAPP_API_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // or a loading list progress view
         // and defines the layout file to use
 
-        ListView newsListView =  findViewById(R.id.news_list);
-        mEmptyStateTextView =  findViewById(R.id.empty_text_view);
+        ListView newsListView = findViewById(R.id.news_list);
+        mEmptyStateTextView = findViewById(R.id.empty_text_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
         // create and set an adapter on the ListView to handle populating it with clickable News items
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
     }
+
     //Menu methods
     // inflate menu layout (to use to get to the app settings activity)
     @Override
@@ -104,17 +105,18 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     // override methods required by the news Loader
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-String searchTerm = sharedPreferences.getString(getString(R.string.settings_searchterm_choice_key), getString(R.string.settings_searchterm_choice_default));
-String orderBy = sharedPreferences.getString(getString(R.string.settings_orderby_choice_key), getString(R.string.settings_orderby_choice_default));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String searchTerm = sharedPreferences.getString(getString(R.string.settings_searchterm_choice_key), getString(R.string.settings_searchterm_choice_default));
+        String orderBy = sharedPreferences.getString(getString(R.string.settings_orderby_choice_key), getString(R.string.settings_orderby_choice_default));
 
         Uri baseUri = Uri.parse(JSON_SOURCE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter( "api-key", "test" );
-        uriBuilder.appendQueryParameter( "show-fields", "byline" );
+        uriBuilder.appendQueryParameter("api-key", apikey);
+        uriBuilder.appendQueryParameter("show-fields", "byline");
+        uriBuilder.appendQueryParameter("show-fields", "thumbnail");
         uriBuilder.appendQueryParameter("q", searchTerm);
         uriBuilder.appendQueryParameter("order-by", orderBy);
-            return new NewsLoader(this, uriBuilder.toString());
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override

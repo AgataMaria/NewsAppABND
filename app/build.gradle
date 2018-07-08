@@ -9,16 +9,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //Please use your own API key for the Guardian API to run this app
+        buildConfigField "String", "MY_NEWSAPP_API_KEY", newsappApiKey
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-        //    buildConfigField ‘String’, ‘MY_NEWSAPP_API_KEY’, newsappApiKey
-        //    resValue ‘string’, ‘MY_NEWSAPP_API_KEY’, newsappApiKey
         }
     }
+
 }
 
 dependencies {

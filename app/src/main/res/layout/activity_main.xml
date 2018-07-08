@@ -16,8 +16,7 @@
     <TextView
         android:id="@+id/empty_text_view"
         style="@style/SectionTextView"
-        android:layout_centerInParent="true"
-        />
+        android:layout_centerInParent="true" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
