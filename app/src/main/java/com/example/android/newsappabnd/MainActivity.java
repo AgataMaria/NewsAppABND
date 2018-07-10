@@ -111,11 +111,12 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         Uri baseUri = Uri.parse(JSON_SOURCE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter("api-key", apikey);
         uriBuilder.appendQueryParameter("show-fields", "byline");
-        uriBuilder.appendQueryParameter("show-fields", "thumbnail");
         uriBuilder.appendQueryParameter("q", searchTerm);
         uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("api-key", apikey);
+        // check that it builds the correct url
+        Log.i("urlbuilt", uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
     }
 
